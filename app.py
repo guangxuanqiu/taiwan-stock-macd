@@ -3,19 +3,12 @@ import pandas as pd
 import numpy as np
 from datetime import datetime
 import os
-from apscheduler.schedulers.background import BackgroundScheduler
+
 from scraper import fetch_wantgoo_data
 
 st.set_page_config(page_title="台股 MACD 實戰分析與視覺化系統", layout="wide")
 
-@st.cache_resource
-def start_scheduler():
-    scheduler = BackgroundScheduler()
-    scheduler.add_job(fetch_wantgoo_data, 'interval', minutes=15, id='macd_scraper')
-    scheduler.start()
-    return scheduler
 
-scheduler = start_scheduler()
 
 st.title("📈 台股 MACD 自動化篩選與歷史線型視覺化系統 (真實連線版)")
 
